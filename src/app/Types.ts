@@ -16,7 +16,7 @@ export interface PizzaCrust {
   price: number;
 }
 
-export interface PizzaType {
+export interface PizzaTipo {
   id: string;
   nome: string;
   descricao: string;
@@ -24,13 +24,13 @@ export interface PizzaType {
   imagemUrl?: string;
 }
 
-export interface PizzaFlavor {
+export interface PizzaSabor {
   id: string;
-  name: string;
-  description: string;
-  pizzaTypes: PizzaType[];
-  price: number;
-  imageUrl?: string;
+  nome: string;
+  descricao: string;
+  pizzaTipos: PizzaTipo[];
+  preco: number;
+  imagemUrl?: string;
 }
 
 export interface PizzaExtra {
@@ -57,7 +57,7 @@ export interface Beverage {
 
 export interface AppliedExtra {
   extra: PizzaExtra;
-  onFlavor: PizzaFlavor | null;
+  onFlavor: PizzaSabor | null;
 }
 
 export interface CustomerUserDto {
@@ -84,8 +84,8 @@ export interface Payment {
 export interface OrderItemFromApi {
   id: string;
   itemType: "PIZZA" | "BEVERAGE";
-  pizzaType: PizzaType | null;
-  flavors: PizzaFlavor[] | null;
+  pizzaType: PizzaTipo | null;
+  flavors: PizzaSabor[] | null;
   appliedExtras: AppliedExtra[] | null;
   crust: PizzaCrust | null;
   beverage: Beverage | null;

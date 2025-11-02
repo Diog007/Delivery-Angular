@@ -1,50 +1,33 @@
-<div class="flavor-selector">
+<div class="flavor-selector-container">
 
-  <div class="header">
-    <div class="title">
-      <h3>1. Escolha o(s) Sabor(es)</h3>
-      <span>Selecione um sabor.</span>
-    </div>
-    <mat-slide-toggle
-      [checked]="allowTwoFlavors()"
-      (change)="onToggleChange($event.checked)">
-      Dois Sabores
-    </mat-slide-toggle>
-  </div>
-
-  @if (isLoading()) {
-    <div class="loading-state">
-      <p>Carregando sabores...</p>
-      </div>
-  }
-
-  @if (error()) {
-    <div class="error-state">
-      <p>{{ error() }}</p>
-    </div>
-  }
+  <h2>1. Escolha o(s) Sabor(es)</h2>
+  <p class="instructions">Selecione um sabor.</p>
 
   <div class="flavor-list">
-    @for (flavor of flavors(); track flavor.id) {
-      <div
-        class="flavor-item" 
-        [class.selected]="isSelected(flavor)"
-        (click)="selectFlavor(flavor)">
 
-        <img
-          [src]="getIconPath(flavor.iconKey)"
-          [alt]="flavor.name"
-          class="flavor-icon"
-          (error)="$event.target.style.display='none'"> <div class="flavor-info">
-          <h4>{{ flavor.name }}</h4>
-          <p>{{ flavor.description }}</p>
+    @for (sabor of pizzaSabores; track sabor.id) {
+      <div
+        class="flavor-item"
+        [class.selected]="sabor.id === selectedFlavorId"
+        >
+
+        <div class="flavor-image-column">
+          <div class="img-placeholder">
+            <span class="icon-placeholder">🍽️</span>
+          </div>
+          <span class="img-label">{{ sabor.imagemUrl }}</span>
+        </div>
+
+        <div class="flavor-info">
+          <h3 class="flavor-title">{{ sabor.nome }}</h3>
+          <p class="flavor-description">{{ sabor.descricao }}</p>
         </div>
 
         <div class="flavor-price">
-          {{ '+' + (flavor.additionalPrice | currency:'BRL':'symbol':'1.2-2':'pt-BR') }}
+          + R$ {{ sabor.preco | number:'1.2-2' }}
         </div>
+
       </div>
     }
   </div>
-
 </div>

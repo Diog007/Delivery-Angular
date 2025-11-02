@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { PizzaType } from '../../Types';
 import { CommonModule } from '@angular/common';
+import { PizzaTipo } from '../../Types';
 
 @Component({
   selector: 'app-pizza-card',
@@ -11,12 +11,12 @@ import { CommonModule } from '@angular/common';
 })
 export class PizzaCardComponent {
 
-  @Input({ required: true }) pizzaType!: PizzaType;
+  @Input({ required: true }) pizzaTipo!: PizzaTipo;
 
-  @Output() selectPizza = new EventEmitter<PizzaType>();
+  @Output() selectPizza = new EventEmitter<PizzaTipo>();
 
   onSelectPizza(): void {
-    this.selectPizza.emit(this.pizzaType);
+    this.selectPizza.emit(this.pizzaTipo);
   }
 
   formatPrice(price: number): string {

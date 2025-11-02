@@ -2,22 +2,22 @@
   <!-- Card Header -->
   <div class="card-header">
     <div class="header-content">
-      <h3 class="pizza-title">{{ pizzaType.nome }}</h3>
+      <h3 class="pizza-title">{{ pizzaTipo.nome }}</h3>
       <span class="price-badge">A partir de
-        {{ formatPrice(pizzaType.precoBase) }}
+        {{ formatPrice(pizzaTipo.precoBase) }}
       </span>
     </div>
   </div>
 
   <!-- Card Content -->
   <div class="card-content">
-    <p class="pizza-description">{{ pizzaType.descricao }}</p>
+    <p class="pizza-description">{{ pizzaTipo.descricao }}</p>
 
     <div class="image-container">
       <img
-        *ngIf="pizzaType.imagemUrl; else placeholderIcon"
-        [src]="getImageUrl(pizzaType.imagemUrl)"
-        [alt]="pizzaType.nome"
+        *ngIf="pizzaTipo.imagemUrl; else placeholderIcon"
+        [src]="getImageUrl(pizzaTipo.imagemUrl)"
+        [alt]="pizzaTipo.nome"
         class="pizza-image"
         loading="lazy">
 

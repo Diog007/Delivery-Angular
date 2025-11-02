@@ -1,0 +1,11 @@
+<app-header></app-header>
+@if (isLoading) {
+  <div>
+    <app-loading></app-loading>
+  </div>
+}@else {
+<app-lista-sabores
+[pizzaSabores]="pizzaSabores">
+</app-lista-sabores>
+}
+<app-footer-fixed></app-footer-fixed>

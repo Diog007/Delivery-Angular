@@ -1,12 +1,12 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { PizzaType } from '../../../Types';
 import { PizzaCardComponent } from '../../../components/pizza-card/pizza-card.component';
 import { CommonModule } from '@angular/common';
 import { ApiService } from '../../../services/apiService';
 import { HeaderComponent } from '../../../components/header/header.component';
 import { FooterFixedComponent } from '../../../components/footer-fixed/footer-fixed.component';
 import { LoadingComponent } from '../../../components/loading/loading.component';
+import { PizzaTipo } from '../../../Types';
 
 @Component({
   selector: 'app-home',
@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
   private readonly router = inject(Router);
   private readonly apiService = inject(ApiService);
 
-  pizzaTypes: PizzaType[] = [];
+  pizzaTypes: PizzaTipo[] = [];
   isLoading = false;
 
   ngOnInit(): void {
@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  onSelectPizza(pizzaType: PizzaType): void {
+  onSelectPizza(pizzaType: PizzaTipo): void {
     this.router.navigate(['/customize'], {
       queryParams: { typeId: pizzaType.id }
     });
@@ -56,7 +56,7 @@ export class HomeComponent implements OnInit {
     return index;
   }
 
-  trackByPizzaId(index: number, pizzaType: PizzaType): string {
+  trackByPizzaId(index: number, pizzaType: PizzaTipo): string {
     return pizzaType.id;
   }
 }
