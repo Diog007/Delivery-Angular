@@ -11,7 +11,7 @@
 
 .flavor-selector-container {
   width: 100%;
-  max-width: 580px; /* Conforme solicitado */
+  max-width: 680px; /* Conforme solicitado */
   height: auto;      /* A altura deve ser automática para acomodar o conteúdo */
   margin: 20px auto;
   padding: 24px;
@@ -44,7 +44,7 @@ h2 {
 
 .flavor-item {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   padding: 16px;
   background-color: var(--background-color);
   border: 1px solid var(--border-color);
@@ -69,34 +69,33 @@ h2 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-width: 80px; // Largura fixa para alinhar o texto
+  min-width: 80px; // Ajustado para o tamanho da imagem
   margin-right: 16px;
   text-align: center;
 }
 
-/* Placeholder da Imagem - Substitua por sua tag <img> */
+/* Placeholder da Imagem */
 .img-placeholder {
-  width: 50px;
-  height: 50px;
+  width: 80px;
+  height: 80px;
   background-color: #f0f0f0;
-  border-radius: 8px; /* Algumas imagens são quadradas */
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 8px;
   overflow: hidden;
 
-  .icon-placeholder {
-    font-size: 24px;
-  }
-
-  /* Se estivesse usando <img>:
-  img {
+  .flavor-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 8px;
   }
-  */
+
+  .icon-placeholder {
+    font-size: 32px;
+  }
 }
 
 .img-label {

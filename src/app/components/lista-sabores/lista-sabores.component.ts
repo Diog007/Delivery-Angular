@@ -13,8 +13,4 @@ export class ListaSaboresComponent {
 
   @Input({ required: true }) pizzaSabores!: PizzaSabor[];
 
-// ID do sabor atualmente selecionado, começando com 'brigadeiro'
-  selectedFlavorId: string | null = 'brigadeiro';
-
-
 }

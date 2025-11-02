@@ -6,28 +6,24 @@
   <div class="flavor-list">
 
     @for (sabor of pizzaSabores; track sabor.id) {
-      <div
-        class="flavor-item"
-        [class.selected]="sabor.id === selectedFlavorId"
-        >
+    <div class="flavor-item">
 
-        <div class="flavor-image-column">
-          <div class="img-placeholder">
-            <span class="icon-placeholder">🍽️</span>
-          </div>
-          <span class="img-label">{{ sabor.imagemUrl }}</span>
+      <div class="flavor-image-column">
+        <div class="img-placeholder">
+          <img src="{{ sabor.imagemUrl }}" alt="{{ sabor.nome }}" class="flavor-image" />
         </div>
-
-        <div class="flavor-info">
-          <h3 class="flavor-title">{{ sabor.nome }}</h3>
-          <p class="flavor-description">{{ sabor.descricao }}</p>
-        </div>
-
-        <div class="flavor-price">
-          + R$ {{ sabor.preco | number:'1.2-2' }}
-        </div>
-
       </div>
+
+      <div class="flavor-info">
+        <h3 class="flavor-title">{{ sabor.nome }}</h3>
+        <p class="flavor-description">{{ sabor.descricao }}</p>
+      </div>
+
+      <div class="flavor-price">
+        + R$ {{ sabor.preco | number:'1.2-2' }}
+      </div>
+
+    </div>
     }
   </div>
 </div>

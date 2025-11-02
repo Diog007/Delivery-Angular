@@ -1,0 +1,48 @@
+.page-header {
+  padding: 12px;
+}
+
+.header-content {
+  max-width: 670px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.back-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  color: #333;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 8px 0;
+  margin-bottom: 0; // Removido margin-bottom
+
+  &:hover {
+    color: #007bff;
+  }
+
+  .icon-arrow-left::before {
+    content: '←';
+    font-size: 18px;
+  }
+}
+
+.page-title {
+  h1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin: 0 0 4px 0;
+  }
+
+  .subtitle {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+  }
+}
