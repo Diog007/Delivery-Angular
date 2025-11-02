@@ -1,0 +1,44 @@
+<div class="pizza-card">
+  <!-- Card Header -->
+  <div class="card-header">
+    <div class="header-content">
+      <h3 class="pizza-title">{{ pizzaType.nome }}</h3>
+      <span class="price-badge">A partir de
+        {{ formatPrice(pizzaType.precoBase) }}
+      </span>
+    </div>
+  </div>
+
+  <!-- Card Content -->
+  <div class="card-content">
+    <p class="pizza-description">{{ pizzaType.descricao }}</p>
+
+    <div class="image-container">
+      <img
+        *ngIf="pizzaType.imagemUrl; else placeholderIcon"
+        [src]="getImageUrl(pizzaType.imagemUrl)"
+        [alt]="pizzaType.nome"
+        class="pizza-image"
+        loading="lazy">
+
+      <ng-template #placeholderIcon>
+        <svg class="placeholder-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2z"/>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M8 12l2 2 4-4"/>
+        </svg>
+      </ng-template>
+    </div>
+  </div>
+
+  <!-- Card Footer -->
+  <div class="card-footer">
+    <button
+      type="button"
+      class="select-button"
+      (click)="onSelectPizza()">
+      Personalizar
+    </button>
+  </div>
+</div>

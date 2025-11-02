@@ -1,0 +1,104 @@
+/* Usando '::ng-deep' para customizar o Material Toggle se necessário,
+   mas preferencialmente use as variáveis CSS do Material. */
+:host {
+  display: block;
+  font-family: Arial, sans-serif;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.flavor-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #eee;
+
+  .title h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    color: #333;
+  }
+  .title span {
+    font-size: 0.9rem;
+    color: #777;
+  }
+}
+
+.loading-state, .error-state {
+  padding: 20px;
+  text-align: center;
+  color: #777;
+  font-style: italic;
+}
+
+.error-state {
+  color: #d9534f; // Vermelho
+}
+
+.flavor-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.flavor-item {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  border: 2px solid #f0f0f0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    border-color: #ddd;
+    background-color: #f9f9f9;
+  }
+
+  &.selected {
+    // Destaque vermelho, como na imagem
+    border-color: #e53935;
+    background-color: #fff8f8;
+  }
+
+  .flavor-icon {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    margin-right: 16px;
+    border-radius: 4px;
+    // Em caso de ícones simples, você pode querer um fundo
+    background-color: #f0f0f0;
+  }
+
+  .flavor-info {
+    flex-grow: 1;
+
+    h4 {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #222;
+    }
+
+    p {
+      margin: 4px 0 0;
+      font-size: 0.85rem;
+      color: #666;
+    }
+  }
+
+  .flavor-price {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #4CAF50; // Verde para o preço
+    white-space: nowrap;
+  }
+}

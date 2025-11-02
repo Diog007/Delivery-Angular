@@ -1,0 +1,35 @@
+<footer class="footer">
+  <div class="footer-container">
+    <button
+      class="footer-item"
+      [class.active]="activeTab === 'pedidos'"
+      (click)="selectTab('pedidos')">
+      <span class="icon">📦</span>
+      <span class="label">Pedidos</span>
+    </button>
+
+    <button
+      class="footer-item"
+      [class.active]="activeTab === 'avaliacoes'"
+      (click)="selectTab('avaliacoes')">
+      <span class="icon">🛒</span>
+      <span class="label">Carrinho</span>
+    </button>
+
+    <button
+      class="footer-item"
+      [class.active]="activeTab === 'avaliacoes'"
+      (click)="selectTab('avaliacoes')">
+      <span class="icon">⭐</span>
+      <span class="label">Avaliações</span>
+    </button>
+
+    <button
+      class="footer-item"
+      [class.active]="activeTab === 'perfil'"
+      (click)="selectTab('perfil')">
+      <span class="icon">👤</span>
+      <span class="label">Perfil</span>
+    </button>
+  </div>
+</footer>

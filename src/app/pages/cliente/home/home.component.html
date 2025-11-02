@@ -1,0 +1,28 @@
+<app-header></app-header>
+<div class="container">
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <h1 class="hero-title">As Melhores Pizzas da Cidade!</h1>
+    <p class="hero-subtitle">
+      Ingredientes frescos, massa artesanal e entrega rápida.
+    </p>
+  </section>
+
+  <!-- Pizza Types Section -->
+  <section class="pizza-types-section">
+    <h2 class="section-title">Escolha o Tamanho da sua Pizza</h2>
+
+    @if (isLoading) {
+    <app-loading></app-loading>
+    } @else {
+    <div class="pizza-grid">
+      <!-- Pizza Cards -->
+      <app-pizza-card *ngFor="let pizzaType of pizzaTypes"
+        [pizzaType]="pizzaType"
+        (selectPizza)="onSelectPizza($event)">
+      </app-pizza-card>
+    </div>
+    }
+  </section>
+</div>
+<app-footer-fixed></app-footer-fixed>

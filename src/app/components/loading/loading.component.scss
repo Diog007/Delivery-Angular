@@ -1,0 +1,139 @@
+/* Variáveis para fácil customização de cores */
+:host {
+  --brand-color: #f36f21; // Cor principal (ex: laranja)
+  --brand-color-dark: #e05a1f; // Cor escura
+  --road-color: #555;
+  --wheel-color: #333;
+  --text-color: #222;
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  width: 100%;
+}
+
+.road-container {
+  width: 150px;
+  height: 80px;
+  position: relative;
+  overflow: hidden; // Esconde o caminhão antes e depois da animação
+}
+
+/* O caminhão (contêiner principal da animação) */
+.truck {
+  position: absolute;
+  bottom: 15px; // Posição acima da estrada
+  left: -80px; // Começa fora da tela
+  display: flex;
+  align-items: flex-end;
+
+  /* Animação principal: movimento e pulo */
+  animation: drive 3s linear infinite,
+             bounce 0.6s ease-in-out infinite;
+}
+
+/* Partes do caminhão desenhadas com CSS */
+.cab {
+  width: 35px;
+  height: 30px;
+  background: var(--brand-color-dark);
+  border-radius: 6px 6px 0 0;
+}
+
+.box {
+  width: 50px;
+  height: 40px;
+  background: var(--brand-color);
+  border-radius: 0 4px 4px 0;
+}
+
+.wheel {
+  width: 16px;
+  height: 16px;
+  background: var(--wheel-color);
+  border-radius: 50%;
+  position: absolute;
+  bottom: -8px;
+  /* Animação de giro */
+  animation: spin 0.4s linear infinite;
+}
+
+.front-wheel {
+  left: 25px;
+}
+
+.back-wheel {
+  left: 65px;
+}
+
+/* A linha da estrada */
+.road-line {
+  width: 200%; // O dobro da largura para criar efeito de movimento
+  height: 4px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--road-color),
+    var(--road-color) 15px,
+    transparent 15px,
+    transparent 30px
+  );
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  /* Animação de movimento da estrada */
+  animation: move-road 0.8s linear infinite;
+}
+
+.loading-message {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text-color);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* === Animações (Keyframes) === */
+
+/* Animação do caminhão dirigindo */
+@keyframes drive {
+  0% {
+    left: -80px; // Fora da tela à esquerda
+  }
+  100% {
+    left: 160px; // Fora da tela à direita
+  }
+}
+
+/* Animação do caminhão "pulando" */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px); // Pulo sutil
+  }
+}
+
+/* Animação das rodas girando */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Animação da estrada se movendo */
+@keyframes move-road {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-60px); // Move a textura da estrada
+  }
+}
