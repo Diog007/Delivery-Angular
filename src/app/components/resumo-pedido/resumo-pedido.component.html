@@ -1,0 +1,101 @@
+<div class="resumo-pedido-container">
+  <h2>Resumo do Pedido</h2>
+
+  @if (temItensObrigatorios) {
+    <div class="itens-selecionados">
+
+      <!-- Sabor Selecionado -->
+      @if (pizzaSabor) {
+        <div class="item-resumo">
+          <div class="sabor-info">
+            <div class="sabor-nome">{{ pizzaSabor.nome }}</div>
+            <div class="sabor-categoria">Sabor: Brigadeiro</div>
+          </div>
+        </div>
+      }
+
+      <!-- Detalhes do Valor -->
+      <div class="detalhes-valor">
+        <h3>Detalhes do Valor:</h3>
+
+        <!-- Base -->
+        <div class="valor-linha">
+          <span class="label">Base</span>
+          <span class="valor">R$ {{ (pizzaTipo?.precoBase || 0) | number:'1.2-2' }}</span>
+        </div>
+
+        <!-- Sabor -->
+        <div class="valor-linha">
+          <span class="label">🍕 Sabor: {{ pizzaSabor?.nome || 'Nenhum' }}</span>
+          <span class="valor-adicional">+ R$ {{ pizzaSabor?.preco | number:'1.2-2' }}</span>
+        </div>
+
+        <!-- Borda -->
+        @if (pizzaBorda) {
+          <div class="valor-linha">
+            <span class="label">🍞 Borda: {{ pizzaBorda.nome }}</span>
+            @if (pizzaBorda.preco && pizzaBorda.preco > 0) {
+              <span class="valor-adicional">+ R$ {{ pizzaBorda.preco | number:'1.2-2' }}</span>
+            } @else {
+              <span class="valor-adicional">R$ {{ 0 | number:'1.2-2' }}</span>
+            }
+          </div>
+        }
+
+        <!-- Adicionais -->
+        @for (adicional of pizzaAdicionais; track adicional.id) {
+          <div class="valor-linha">
+            <span class="label">🧄 Adicional: {{ adicional.nome }}</span>
+            <span class="valor-adicional">+ R$ {{ adicional.preco | number:'1.2-2' }}</span>
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- Quantidade -->
+    <div class="quantidade-container">
+      <label for="quantidade">Quantidade:</label>
+      <div class="quantidade-controls">
+        <button
+          type="button"
+          class="btn-quantidade"
+          (click)="decrementarQuantidade()"
+          [disabled]="quantidade <= 1">
+          −
+        </button>
+        <input
+          type="number"
+          id="quantidade"
+          [(ngModel)]="quantidade"
+          min="1"
+          max="10"
+          readonly />
+        <button
+          type="button"
+          class="btn-quantidade"
+          (click)="incrementarQuantidade()"
+          [disabled]="quantidade >= 10">
+          +
+        </button>
+      </div>
+    </div>
+
+    <!-- Preço Total -->
+    <div class="preco-total">
+      <strong>Total: R$ {{ precoTotal | number:'1.2-2' }}</strong>
+    </div>
+
+    <!-- Botão Adicionar ao Carrinho -->
+    <button
+      class="btn-adicionar"
+      (click)="adicionarAoCarrinho()"
+      [disabled]="!temItensObrigatorios">
+      Adicionar ao Carrinho
+    </button>
+
+  } @else {
+    <div class="mensagem-vazia">
+      <p>Selecione pelo menos um sabor para ver o resumo do pedido.</p>
+    </div>
+  }
+</div>

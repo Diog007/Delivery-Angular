@@ -26,6 +26,7 @@ export class AdicionaisComponent {
     // Emite a lista completa de objetos selecionados
     const selectedObjects = this.pizzaAdicionais.filter(i => this.selectedItems.has(i.id));
     this.selectionChange.emit(selectedObjects);
+    console.log('Adicionais selecionados:', selectedObjects);
   }
 
   isSelected(item: Adicionais): boolean {

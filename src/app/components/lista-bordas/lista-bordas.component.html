@@ -5,20 +5,20 @@
     <label
       class="item-opcao"
       *ngFor="let opcao of pizzaBordas"
-      [class.ativo]="opcao?.id === opcao.id">
+      [class.ativo]="isSelecionada(opcao)">
 
       <div class="lado-esquerdo">
         <input
           type="radio"
           name="borda"
-          [value]="opcao"
-          [checked]="opcao?.id === opcao.id"
+          [value]="opcao.id"
+          [checked]="isSelecionada(opcao)"
           (change)="selecionarOpcao(opcao)">
 
         <span class="texto-nome">{{ opcao.nome }}</span>
       </div>
 
-      <div class="lado-direito" *ngIf="opcao.preco !== undefined">
+      <div class="lado-direito" *ngIf="opcao.preco !== undefined && opcao.preco > 0">
         <span class="badge-preco">
           +{{ opcao.preco | currency:'BRL':'symbol':'1.2-2' }}
         </span>

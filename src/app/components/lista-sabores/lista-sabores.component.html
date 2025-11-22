@@ -6,7 +6,9 @@
   <div class="flavor-list">
 
     @for (sabor of pizzaSabores; track sabor.id) {
-    <div class="flavor-item">
+    <div class="flavor-item"
+         [class.selected]="isSelecionado(sabor)"
+         (click)="selecionarSabor(sabor)">
 
       <div class="flavor-image-column">
         <div class="img-placeholder">

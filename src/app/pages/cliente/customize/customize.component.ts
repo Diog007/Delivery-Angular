@@ -10,13 +10,18 @@ import { ActivatedRoute } from '@angular/router';
 import { LoadingComponent } from '../../../components/loading/loading.component';
 import { AdicionaisComponent } from '../../../components/adicionais/adicionais.component';
 import { ListaBordasComponent } from "../../../components/lista-bordas/lista-bordas.component";
+import { ResumoPedidoComponent } from '../../../components/resumo-pedido/resumo-pedido.component';
 
 @Component({
   selector: 'app-customize',
   standalone: true,
-  imports: [CommonModule, LoadingComponent,
+  imports: [CommonModule,
+    LoadingComponent,
     FormsModule, HeaderComponent,
-    FooterFixedComponent, ListaSaboresComponent, AdicionaisComponent, ListaBordasComponent],
+    FooterFixedComponent, ListaSaboresComponent,
+    AdicionaisComponent, ListaBordasComponent,
+    ResumoPedidoComponent
+  ],
   templateUrl: './customize.component.html',
   styleUrls: ['./customize.component.scss']
 })
@@ -30,6 +35,11 @@ export class CustomizeComponent implements OnInit {
   pizzaSabores: PizzaSabor[] = [];
   pizzaAdicionais: Adicionais[] = [];
   pizzaBordas: PizzaBordas[] = [];
+
+  // Estados de seleção
+  saborSelecionado: PizzaSabor | null = null;
+  adicionaisSelecionados: Adicionais[] = [];
+  bordaSelecionada: PizzaBordas | null = null;
 
   isLoading = false;
 
@@ -117,4 +127,33 @@ export class CustomizeComponent implements OnInit {
       }
     });
   }
+
+
+  // Métodos para receber seleções dos componentes filhos
+  onSaborSelecionado(sabor: PizzaSabor): void {
+    this.saborSelecionado = sabor;
+    console.log('Sabor selecionado no pai:', sabor);
+  }
+
+  onAdicionaisSelecionados(adicionais: Adicionais[]): void {
+    this.adicionaisSelecionados = adicionais;
+    console.log('Adicionais selecionados no pai:', adicionais);
+  }
+
+  onBordaSelecionada(borda: PizzaBordas): void {
+    this.bordaSelecionada = borda;
+    console.log('Borda selecionada no pai:', borda);
+  }
+
+  onPedidoAdicionado(pedido: any): void {
+    console.log('Pedido adicionado ao carrinho:', pedido);
+    // Implementar lógica do carrinho aqui
+  }
+
+  private resetSelecoes(): void {
+    this.saborSelecionado = null;
+    this.adicionaisSelecionados = [];
+    this.bordaSelecionada = null;
+  }
+
 }
