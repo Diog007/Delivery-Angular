@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { PizzaSabor, PizzaTipo } from '../Types';
+import { Adicionais, PizzaSabor, PizzaTipo } from '../Types';
 
 @Injectable({
   providedIn: 'root'
@@ -16,5 +16,9 @@ export class ApiService {
 
   getPizzaSabores(id: string): Observable<PizzaSabor[]> {
     return this.http.get<PizzaSabor[]>(`${this.API_BASE_URL}/menu/sabores/${id}`);
+  }
+
+  getPizzaAdicionais(id: string): Observable<Adicionais[]> {
+    return this.http.get<Adicionais[]>(`${this.API_BASE_URL}/menu/adicionais/${id}`)
   }
 }

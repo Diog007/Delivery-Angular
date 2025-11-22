@@ -33,11 +33,11 @@ export interface PizzaSabor {
   imagemUrl?: string;
 }
 
-export interface PizzaExtra {
+export interface Adicionais {
   id: string;
-  name: string;
-  description: string;
-  price: number;
+  nome: string;
+  descricao: string;
+  preco: number;
 }
 
 export interface BeverageCategory {
@@ -55,10 +55,6 @@ export interface Beverage {
   category: BeverageCategory;
 }
 
-export interface AppliedExtra {
-  extra: PizzaExtra;
-  onFlavor: PizzaSabor | null;
-}
 
 export interface CustomerUserDto {
   id: string;
@@ -79,33 +75,6 @@ export interface Payment {
   method: PaymentMethod;
   cardBrand?: string;
   cardType?: string;
-}
-
-export interface OrderItemFromApi {
-  id: string;
-  itemType: "PIZZA" | "BEVERAGE";
-  pizzaType: PizzaTipo | null;
-  flavors: PizzaSabor[] | null;
-  appliedExtras: AppliedExtra[] | null;
-  crust: PizzaCrust | null;
-  beverage: Beverage | null;
-  observations: string;
-  quantity: number;
-  totalPrice: number;
-}
-
-export interface Order {
-  id: string;
-  items: OrderItemFromApi[];
-  customerUser: CustomerUserDto;
-  deliveryType: DeliveryType;
-  deliveryAddress?: DeliveryAddress;
-  payment: Payment;
-  status: OrderStatus;
-  createdAt: string;
-  estimatedDeliveryTime?: string;
-  totalAmount: number;
-  observations?: string;
 }
 
 // DTOs para Autenticação

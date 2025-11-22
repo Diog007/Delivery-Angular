@@ -4,17 +4,18 @@ import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from '../../../components/header/header.component';
 import { FooterFixedComponent } from '../../../components/footer-fixed/footer-fixed.component';
 import { ListaSaboresComponent } from '../../../components/lista-sabores/lista-sabores.component';
-import { PizzaSabor, PizzaTipo } from '../../../Types';
+import { Adicionais, PizzaSabor, PizzaTipo } from '../../../Types';
 import { ApiService } from '../../../services/apiService';
 import { ActivatedRoute } from '@angular/router';
 import { LoadingComponent } from '../../../components/loading/loading.component';
+import { AdicionaisComponent } from '../../../components/adicionais/adicionais.component';
 
 @Component({
   selector: 'app-customize',
   standalone: true,
   imports: [CommonModule, LoadingComponent,
     FormsModule, HeaderComponent,
-    FooterFixedComponent, ListaSaboresComponent],
+    FooterFixedComponent, ListaSaboresComponent, AdicionaisComponent],
   templateUrl: './customize.component.html',
   styleUrls: ['./customize.component.scss']
 })
@@ -25,6 +26,7 @@ export class CustomizeComponent implements OnInit {
 
   pizzaTipo: PizzaTipo | null = null;
 
+  pizzaAdicionais: Adicionais[] = [];
   pizzaSabores: PizzaSabor[] = [];
   isLoading = false;
   pizzaTypeId: string | null = null;
@@ -33,6 +35,7 @@ export class CustomizeComponent implements OnInit {
   ngOnInit(): void {
     this.getRouteParams();
     this.getPizzaTipo(this.pizzaTypeId!);
+    this.getAdicionais(this.pizzaTypeId!);
   }
 
   //metodo para obter os parametros da rota(o id do tipo de pizza para buscar os sabores)
@@ -55,6 +58,21 @@ export class CustomizeComponent implements OnInit {
     this.apiService.getPizzaSabores(typeID).subscribe({
       next: (data) => {
         this.pizzaSabores = data;
+      },
+      error: (error) => {
+        this.isLoading = false; // Importante: parar o loading em caso de erro
+      },
+      complete: () => {
+        this.isLoading = false;
+      }
+    });
+  }
+
+  private getAdicionais(typeID: string): void {
+    this.isLoading = true;
+    this.apiService.getPizzaAdicionais(typeID).subscribe({
+      next: (data) => {
+        this.pizzaAdicionais = data;
       },
       error: (error) => {
         this.isLoading = false; // Importante: parar o loading em caso de erro

@@ -1,0 +1,41 @@
+<div class="flavor-selector-container">
+
+  <h2>2. Adicionais (Opcional)</h2>
+  <p class="instructions">Selecione os adicionais desejados.</p>
+
+  <div class="flavor-list">
+
+    @for (adicional of pizzaAdicionais; track adicional.id) {
+    <div
+      class="flavor-item adicional-item"
+      [class.selected]="isSelected(adicional)"
+      (click)="toggleSelection(adicional)">
+
+      <div class="checkbox-container">
+        <input
+          type="checkbox"
+          [checked]="isSelected(adicional)"
+          (click)="$event.stopPropagation()"
+          readonly>
+      </div>
+
+      <div class="flavor-info">
+        <h3 class="flavor-title">{{ adicional.nome }}</h3>
+        <p class="flavor-description">{{ adicional.descricao }}</p>
+      </div>
+
+      <div class="flavor-price">
+        +R$ {{ adicional.preco | number:'1.2-2' }}
+      </div>
+
+    </div>
+    }
+  </div>
+
+  <!-- Resumo dos selecionados (opcional) -->
+  @if (selectedItems.size > 0) {
+    <div class="selection-summary">
+      <strong>Total adicionais: R$ {{ getTotalPrice() | number:'1.2-2' }}</strong>
+    </div>
+  }
+</div>
