@@ -1,0 +1,68 @@
+/* Container Principal (Card) */
+.card-borda {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fonte similar */
+  max-width: 680px; /* Ajuste conforme necessário */
+  margin: 20px auto;
+}
+
+/* Título */
+.titulo {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #000;
+}
+
+/* Item da Lista (Linha) */
+.item-opcao {
+  display: flex;
+  justify-content: space-between; /* Separa texto e preço */
+  align-items: center;
+  padding: 12px 0;
+  cursor: pointer;
+}
+
+/* Lado Esquerdo (Radio + Texto) */
+.lado-esquerdo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Estilo do Radio Button */
+input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #222; /* Cor escura para o radio selecionado */
+  cursor: pointer;
+  margin: 0;
+}
+
+.texto-nome {
+  font-size: 1rem;
+  color: #333;
+  font-weight: 500;
+}
+
+/* Badge de Preço (Pílula) */
+.badge-preco {
+  border: 1px solid #dcdcdc;
+  border-radius: 20px; /* Arredondamento estilo pílula */
+  padding: 4px 12px;
+  font-size: 0.9rem;
+  color: #333;
+  font-weight: 600;
+  background-color: #fff;
+  white-space: nowrap;
+}
+
+/* Efeito Hover (Opcional para UX) */
+.item-opcao:hover .texto-nome {
+  color: #000;
+}

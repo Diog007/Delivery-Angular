@@ -13,13 +13,15 @@
   </div>
 </div>
 
-@if (isLoading) {
-<div>
-  <app-loading></app-loading>
+<div class="page-content">
+  @if (isLoading) {
+  <div>
+    <app-loading></app-loading>
+  </div>
+  }@else {
+  <app-lista-sabores [pizzaSabores]="pizzaSabores"></app-lista-sabores>
+  <app-adicionais [pizzaAdicionais]="pizzaAdicionais"></app-adicionais>
+  <app-lista-bordas [pizzaBordas]="pizzaBordas"></app-lista-bordas>
+  }
 </div>
-}@else {
-<app-lista-sabores [pizzaSabores]="pizzaSabores">
-</app-lista-sabores>
-<app-adicionais [pizzaAdicionais]="pizzaAdicionais"></app-adicionais>
-}
 <app-footer-fixed></app-footer-fixed>

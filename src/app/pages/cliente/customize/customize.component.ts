@@ -4,18 +4,19 @@ import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from '../../../components/header/header.component';
 import { FooterFixedComponent } from '../../../components/footer-fixed/footer-fixed.component';
 import { ListaSaboresComponent } from '../../../components/lista-sabores/lista-sabores.component';
-import { Adicionais, PizzaSabor, PizzaTipo } from '../../../Types';
+import { Adicionais, PizzaBordas, PizzaSabor, PizzaTipo } from '../../../Types';
 import { ApiService } from '../../../services/apiService';
 import { ActivatedRoute } from '@angular/router';
 import { LoadingComponent } from '../../../components/loading/loading.component';
 import { AdicionaisComponent } from '../../../components/adicionais/adicionais.component';
+import { ListaBordasComponent } from "../../../components/lista-bordas/lista-bordas.component";
 
 @Component({
   selector: 'app-customize',
   standalone: true,
   imports: [CommonModule, LoadingComponent,
     FormsModule, HeaderComponent,
-    FooterFixedComponent, ListaSaboresComponent, AdicionaisComponent],
+    FooterFixedComponent, ListaSaboresComponent, AdicionaisComponent, ListaBordasComponent],
   templateUrl: './customize.component.html',
   styleUrls: ['./customize.component.scss']
 })
@@ -26,9 +27,12 @@ export class CustomizeComponent implements OnInit {
 
   pizzaTipo: PizzaTipo | null = null;
 
-  pizzaAdicionais: Adicionais[] = [];
   pizzaSabores: PizzaSabor[] = [];
+  pizzaAdicionais: Adicionais[] = [];
+  pizzaBordas: PizzaBordas[] = [];
+
   isLoading = false;
+
   pizzaTypeId: string | null = null;
 
   //metodo executado na inicializacao do componente
@@ -36,6 +40,7 @@ export class CustomizeComponent implements OnInit {
     this.getRouteParams();
     this.getPizzaTipo(this.pizzaTypeId!);
     this.getAdicionais(this.pizzaTypeId!);
+    this.getBordas(this.pizzaTypeId!);
   }
 
   //metodo para obter os parametros da rota(o id do tipo de pizza para buscar os sabores)
@@ -73,6 +78,7 @@ export class CustomizeComponent implements OnInit {
     this.apiService.getPizzaAdicionais(typeID).subscribe({
       next: (data) => {
         this.pizzaAdicionais = data;
+
       },
       error: (error) => {
         this.isLoading = false; // Importante: parar o loading em caso de erro
@@ -81,6 +87,23 @@ export class CustomizeComponent implements OnInit {
         this.isLoading = false;
       }
     });
+  }
+
+  private getBordas(typeID: string): void {
+    this.isLoading = true;
+    this.apiService.getPizzaBordas(typeID).subscribe({
+      next: (data) => {
+        this.pizzaBordas = data;
+        console.log('Adicionais recebidos:', data);
+      },
+      error: (error) => {
+        this.isLoading = false; // Importante: parar o loading em caso de erro
+      },
+      complete: () => {
+        this.isLoading = false;
+      }
+    });
+
   }
 
   //metodo para obter o tipo de pizza com base no id recebido

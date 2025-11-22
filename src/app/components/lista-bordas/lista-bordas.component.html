@@ -1,0 +1,29 @@
+<div class="card-borda">
+  <h3 class="titulo">3. Escolha a Borda (Opcional)</h3>
+
+  <div class="lista-opcoes">
+    <label
+      class="item-opcao"
+      *ngFor="let opcao of pizzaBordas"
+      [class.ativo]="opcao?.id === opcao.id">
+
+      <div class="lado-esquerdo">
+        <input
+          type="radio"
+          name="borda"
+          [value]="opcao"
+          [checked]="opcao?.id === opcao.id"
+          (change)="selecionarOpcao(opcao)">
+
+        <span class="texto-nome">{{ opcao.nome }}</span>
+      </div>
+
+      <div class="lado-direito" *ngIf="opcao.preco !== undefined">
+        <span class="badge-preco">
+          +{{ opcao.preco | currency:'BRL':'symbol':'1.2-2' }}
+        </span>
+      </div>
+
+    </label>
+  </div>
+</div>

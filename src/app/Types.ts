@@ -33,6 +33,13 @@ export interface PizzaSabor {
   imagemUrl?: string;
 }
 
+export interface PizzaBordas {
+  id: string;
+  nome: string;
+  descricao: string;
+  preco: number;
+}
+
 export interface Adicionais {
   id: string;
   nome: string;

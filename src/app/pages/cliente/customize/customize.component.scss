@@ -10,6 +10,16 @@
   gap: 16px;
 }
 
+.subtitle {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+}
+
+.page-content {
+  padding-bottom: 80px; /* Ajuste este valor para a altura do seu footer */
+}
+
 .back-button {
   display: flex;
   align-items: center;
