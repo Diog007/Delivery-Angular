@@ -14,8 +14,6 @@ import { PizzaTipo } from '../../../Types';
   imports: [
     PizzaCardComponent,
     CommonModule,
-    HeaderComponent,
-    FooterFixedComponent,
     LoadingComponent ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']

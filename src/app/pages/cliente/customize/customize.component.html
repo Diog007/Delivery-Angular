@@ -1,6 +1,4 @@
-<app-header></app-header>
 <div class="page-header">
-
   <div class="header-content">
     <button class="back-button">
       <i class="icon-arrow-left"></i>
@@ -13,6 +11,7 @@
     </div>
   </div>
 </div>
+
 <div class="page-content">
   @if (isLoading) {
     <div class="loading-container">
@@ -20,28 +19,23 @@
     </div>
   } @else {
     <div class="customize-layout">
-      <!-- Seção Principal - Componentes de Seleção -->
       <div class="selection-section">
-        <!-- Lista de Sabores -->
         <app-lista-sabores
           [pizzaSabores]="pizzaSabores"
           (saborSelecionado)="onSaborSelecionado($event)">
         </app-lista-sabores>
 
-        <!-- Lista de Adicionais -->
         <app-adicionais
           [pizzaAdicionais]="pizzaAdicionais"
           (selectionChange)="onAdicionaisSelecionados($event)">
         </app-adicionais>
 
-        <!-- Lista de Bordas -->
         <app-lista-bordas
           [pizzaBordas]="pizzaBordas"
           (aoSelecionar)="onBordaSelecionada($event)">
         </app-lista-bordas>
       </div>
 
-      <!-- Seção Lateral - Resumo do Pedido (Sticky) -->
       <div class="summary-section">
         <div class="summary-sticky">
           <app-resumo-pedido
@@ -56,4 +50,3 @@
     </div>
   }
 </div>
-<app-footer-fixed></app-footer-fixed>

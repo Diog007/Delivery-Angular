@@ -17,8 +17,7 @@ import { ResumoPedidoComponent } from '../../../components/resumo-pedido/resumo-
   standalone: true,
   imports: [CommonModule,
     LoadingComponent,
-    FormsModule, HeaderComponent,
-    FooterFixedComponent, ListaSaboresComponent,
+    FormsModule, ListaSaboresComponent,
     AdicionaisComponent, ListaBordasComponent,
     ResumoPedidoComponent
   ],

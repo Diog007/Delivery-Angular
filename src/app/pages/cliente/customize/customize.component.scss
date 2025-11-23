@@ -22,6 +22,7 @@
   margin: 0 auto;
   padding-left: 16px;
   padding-right: 120px;
+  position: relative;
 }
 
 .loading-container {
@@ -31,17 +32,20 @@
   min-height: 400px;
 }
 
-/* Layout Principal */
+/* Layout Principal - CORRIGIDO */
 .customize-layout {
   display: grid;
-  grid-template-columns: 1fr 320px; /* Reduzi a largura da coluna do resumo */
-  gap: 8px;
-  align-items: start;
+  grid-template-columns: 1fr 320px;
+  gap: 24px;
+  /* align-items: start FOI REMOVIDO para permitir o stretch das colunas */
   margin-top: 20px;
+  min-height: 100vh;
+  position: relative;
 
   @media (max-width: 1024px) {
-    grid-template-columns: 1fr; /* Em telas menores, empilha verticalmente */
+    grid-template-columns: 1fr;
     gap: 12px;
+    min-height: auto;
   }
 }
 
@@ -49,40 +53,80 @@
 .selection-section {
   width: 100%;
   max-width: 680px;
+  /* min-height: 100vh; removido pois o grid já cuida da altura */
+  padding-bottom: 40px;
 
-  /* Remove margens automáticas dos componentes filhos */
   :ng-deep app-lista-sabores .flavor-selector-container,
   :ng-deep app-adicionais .flavor-selector-container,
   :ng-deep app-lista-bordas .card-borda {
     margin-left: 0;
     margin-right: 0;
-    margin-bottom: 16px; /* Espaçamento vertical entre os cards */
+    margin-bottom: 24px;
   }
 }
 
-/* Seção do Resumo (Direita) */
+/* Seção do Resumo (Direita) - CORRIGIDO */
 .summary-section {
   position: relative;
-  margin-left: -10px; /* Força aproximação para a esquerda */
+  height: 100%; /* CRUCIAL: Garante que o container tenha a altura total da grid */
 
   .summary-sticky {
     position: sticky;
-    top: 20px; /* Distância do topo quando grudado */
-    z-index: 10;
+    top: 80px; /* Distância do topo fixo */
+    z-index: 100;
+
+    /* Define altura máxima para permitir scroll interno se o resumo for muito longo */
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+
+    /* Otimizações de performance */
+    contain: layout style paint;
+    will-change: transform;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    align-self: flex-start;
   }
 
-  /* Remove margens do componente resumo */
-  :ng-deep app-resumo-pedido .resumo-pedido-container {
-    margin: 0;
-    width: 100%;
-    max-width: none;
+  /* Estilos do componente resumo */
+  :ng-deep app-resumo-pedido {
+    .resumo-pedido-container {
+      margin: 0;
+      width: 100%;
+      /* max-width removido ou ajustado conforme necessário */
+
+      box-shadow:
+        0 4px 6px -1px rgba(0, 0, 0, 0.1),
+        0 2px 4px -1px rgba(0, 0, 0, 0.06),
+        0 0 0 1px rgba(0, 0, 0, 0.05);
+
+      border-radius: 16px;
+      background: white;
+      border: 1px solid #f1f5f9;
+      transition: all 0.3s ease;
+
+      &:hover {
+        box-shadow:
+          0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -2px rgba(0, 0, 0, 0.05),
+          0 0 0 1px rgba(0, 0, 0, 0.08);
+        transform: translateY(-1px);
+      }
+    }
   }
 
   @media (max-width: 1024px) {
-    margin-left: 0; /* Remove a margem negativa em mobile */
-
     .summary-sticky {
-      position: static; /* Remove sticky em telas menores */
+      position: sticky;
+      top: 70px;
+      max-height: calc(100vh - 100px);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .summary-sticky {
+      position: relative;
+      top: auto;
+      max-height: none;
+      margin-top: 20px;
     }
   }
 }
@@ -124,11 +168,12 @@
   }
 }
 
-/* Responsividade */
+/* Responsividade Geral */
 @media (max-width: 768px) {
   .page-content {
     padding-left: 12px;
     padding-right: 12px;
+    padding-right: 12px; /* Reset do padding extra */
   }
 
   .header-content {
@@ -141,7 +186,7 @@
 
   .back-button {
     span {
-      display: none; /* Esconde texto "Voltar" em mobile */
+      display: none;
     }
   }
 }
